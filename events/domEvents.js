@@ -4,6 +4,9 @@ import addBookForm from '../components/forms/addBookForm';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import { getSingleAuthor, deleteSingleAuthor, getAuthors } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
+import { getAuthorDetails, getBookDetails } from '../api/mergedData';
+import viewBook from '../pages/viewBook';
+import viewAuthor from '../pages/viewAuthor';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -35,7 +38,18 @@ const domEvents = () => {
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getBookDetails(firebaseKey).then(viewBook);
       console.warn('VIEW BOOK', e.target.id);
+      console.warn(e.target.id.split('--'));
+    }
+
+    if (e.target.id.includes('view-author-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getAuthorDetails(firebaseKey).then(viewAuthor);
+      console.warn('VIEW AUTHOR', e.target.id);
       console.warn(e.target.id.split('--'));
     }
 
