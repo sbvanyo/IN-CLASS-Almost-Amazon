@@ -18,7 +18,9 @@ const viewAuthor = (obj) => {
      <h5>${obj.first_name} ${obj.last_name} ${obj.favorite ? '<span class="badge bg-danger"><i class="fa fa-heart" aria-hidden="true"></i></span>' : ''}</h5>
      Author Email: <a href="mailto:${obj.email}">${obj.email}</a>
      <hr>
+     <h4 id="author-books-header">Books</h4>
     </div>`;
+
   obj.authorBooks.forEach((book) => {
     domString += `
     <div class="card">

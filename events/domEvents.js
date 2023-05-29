@@ -3,10 +3,10 @@ import { showBooks } from '../pages/books';
 import addBookForm from '../components/forms/addBookForm';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import {
-  getSingleAuthor, deleteSingleAuthor, getAuthors
+  getSingleAuthor, getAuthors
 } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
-import { getAuthorDetails, getBookDetails } from '../api/mergedData';
+import { getAuthorDetails, getBookDetails, deleteAuthorBooksRelationship } from '../api/mergedData';
 import viewBook from '../pages/viewBook';
 import viewAuthor from '../pages/viewAuthor';
 
@@ -64,7 +64,7 @@ const domEvents = () => {
         console.warn(e.target.id.split('--'));
         const [, firebaseKey] = e.target.id.split('--');
 
-        deleteSingleAuthor(firebaseKey).then(() => {
+        deleteAuthorBooksRelationship(firebaseKey).then(() => {
           getAuthors().then(showAuthors);
         });
       }
